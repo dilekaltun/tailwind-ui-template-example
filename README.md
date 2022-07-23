@@ -10,3 +10,10 @@ Dillinger uses a number of open source projects to work properly:
 - [Tailwind.css](https://tailwindcss.com/) -great UI boilerplate for modern web apps
 - [Stimulus.js](https://stimulus.hotwired.dev/) - evented I/O for the backend
 
+
+
+## Demo app
+- [Demo App Link](https://tailwind-ui-template-example.vercel.app/)
+
+
+
