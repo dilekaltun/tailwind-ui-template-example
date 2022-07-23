@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tailwind UI Template Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="module">
+      import {
+        Application,
+        Controller
+      } from "https://unpkg.com/@hotwired/stimulus/dist/stimulus.js"
+      window.Stimulus = Application.start()
+      Stimulus.register("hello", class extends Controller {
+        static targets = ["mobileMenu", "tooltipBottom"]
+        toggle(event) {
+          const menu = this.mobileMenuTarget;
+          menu.classList.toggle("hidden")
+        }
+      })
+    </script>
+    <style type="text/tailwindcss"> @tailwind base;
+
+          @layer base {
+            .menu_links {
+              @apply text-base font-medium text-white hover:text-sky-100;
+            }
+            .menu_tooltips {
+              @apply inline-block cursor-pointer bg-white py-2 px-4 border border-transparent rounded-md text-base font-medium text-sky-900  hover:bg-sky-100
+            }
+            .tooltip {
+              @apply invisible absolute rounded shadow-lg p-5 bg-gray-100 text-sky-600 mt-10 -ml-20;
+            }
+            .question-tooltip{
+              @apply invisible absolute rounded shadow-lg p-5 bg-gray-100 text-sky-600 -mt-16 -ml-10
+            }
+            .has-tooltip:hover .question-tooltip {
+              @apply visible z-50 ;
+            }
+
+            .has-tooltip:hover .tooltip {
+              @apply visible z-50 ;
+            }
+          }
+          @tailwind components;
+          @tailwind utilities;
+    </style>
+  </head>
+  <body data-controller="hello">
+    <header class="bg-sky-600">
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" aria-label="Top">
+        <div class="w-full py-4 flex items-center justify-between">
+          <div class="flex items-center">
+            <div class="hidden ml-10 space-x-8 md:block">
+              <a href="#" class="menu_links"> Home </a>
+              <a href="#" class="menu_links"> Products </a>
+              <a href="#" class="menu_links"> Company </a>
+              <a href="#" class="menu_links"> Blog </a>
+            </div>
+            <div class=" flex items-center md:hidden block">
+              <button type="button" data-action="click->hello#toggle" class="inline-flex items-center justify-center p-2 rounded-md text-white" aria-controls="mobile-menu" aria-expanded="false">
+                <svg class="block h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <svg class="hidden h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div class="md:ml-10 space-x-4 md:block hidden">
+            <div class='has-tooltip menu_tooltips'>
+              <span class='tooltip'>Some Nice Tooltip Text</span> One
+            </div>
+            <div class='has-tooltip menu_tooltips'>
+              <span class='tooltip'>Some Nice Tooltip Text</span> Two
+            </div>
+            <div class='has-tooltip menu_tooltips'>
+              <span class='tooltip'>Some Nice Tooltip Text</span> Three
+            </div>
+          </div>
+          <div class="flex-shrink-0 flex items-center block md:hidden">
+            <img class=" h-10 w-auto rounded-full" src="https://lab2023.com/assets/images/team/dilek-altun@2x.jpg" alt="Workflow">
+          </div>
+        </div>
+        <div class="md:hidden hidden" data-target="hello.mobileMenu">
+          <div class="px-2 pt-2 pb-3 space-y-1">
+            <a href="#" class="bg-gray-900 text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">Home</a>
+            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Products</a>
+            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Company</a>
+            <a href="#" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Blog</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <section class="lg:flex w-11/12 my-8 justify-center mx-auto">
+      <div class="bg-white border-2 border-gray-200 rounded-lg mx-2 basis-1/5">
+        <div class="relative h-auto p-3 lg:grid flex">
+          <img class="rounded-md w-52 h-52 lg:w-auto lg:h-auto object-cover" src="https://img.freepik.com/free-photo/computer-program-coding-screen_53876-138060.jpg?t=st=1658586006~exp=1658586606~hmac=062ce43ece3fc1a67fb1293ce2a90f6c584de0ccb6fd5fc2121d1fcd183e89f0&w=900" alt="Web design code">
+          <p class="my-3 w-72 md:w-[800px] lg:w-72 ml-5 lg:ml-0 text-gray-600 text-[15px] text-justify w-auto h-auto ">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed ullamcorper morbi tincidunt ornare massa eget egestas. Tellus molestie nunc non blandit massa. Leo integer malesuada nunc vel risus. Tellus molestie nunc non blandit massa. Leo integer malesuada nunc vel risus.</p>
+        </div>
+      </div>
+      <div class="bg-white mx-2 basis-2/5 mt-10 lg:mt-0">
+        <div class="relative rounded-lg">
+          <div>
+            <nav class="relative z-0 flex w-80 border-t-2 border-l-2 border-r-2  border-gray-200 rounded-t-lg divide-x divide-gray-200 " aria-label="Tabs">
+              <a href="#" class="text-gray-900 group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 focus:z-10" aria-current="page">
+                <span>One</span>
+                <span aria-hidden="true" class="bg-sky-600 absolute inset-x-0 bottom-0 h-0.5"></span>
+              </a>
+              <a href="#" class="text-gray-500 hover:text-gray-700 group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 focus:z-10">
+                <span>Two</span>
+                <span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
+              </a>
+              <a href="#" class="text-gray-500 hover:text-gray-700 group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 focus:z-10">
+                <span>Three</span>
+                <span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
+              </a>
+              <a href="#" class="text-gray-500 hover:text-gray-700 rounded-r-lg group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 focus:z-10">
+                <span>Four</span>
+                <span aria-hidden="true" class="bg-transparent absolute inset-x-0 bottom-0 h-0.5"></span>
+              </a>
+            </nav>
+          </div>
+        </div>
+        <div class="relative p-5 rounded-tr-lg rounded-b-lg  border-2 border-gray-200">
+          <div>
+            <label for="label" class="block text-sm font-medium text-gray-700 flex">
+              <span> Label</span>
+              <div class='has-tooltip'>
+                <span class='question-tooltip'>Please Select</span>
+                <i class="fa fa-question-circle ml-3 hover:cursor-pointer" aria-hidden="true"></i>
+              </div>
+            </label>
+            <select id="label" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm rounded-md">
+              <option>Seçiniz</option>
+              <option selected>Tailwind.css</option>
+              <option>CSS3</option>
+              <option>Bootstrap</option>
+            </select>
+          </div>
+          <div class="mt-10">
+            <label for="comment" class="block text-sm font-medium text-gray-700 flex">
+              <span> Add your comment</span>
+              <div class='has-tooltip'>
+                <span class='question-tooltip'>Please add comment</span>
+                <i class="fa fa-question-circle ml-3 hover:cursor-pointer" aria-hidden="true"></i>
+              </div>
+            </label>
+            <div class="mt-1">
+              <textarea rows="4" name="comment" id="comment" class="shadow-sm focus:ring-sky-500 focus:border-sky-500 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
+            </div>
+          </div>
+          <div class="flex justify-end mt-5">
+            <button type="button" class="mr-3 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-red-500 hover:bg-red-400 "> Cancel </button>
+            <button type="button" class="ml-3 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-sky-500 hover:bg-sky-400"> Button </button>
+          </div>
+        </div>
+      </div>
+      <div class="bg-white border-2 border-gray-200 rounded-lg mx-2 p-5 basis-2/5 mt-10 lg:mt-0">
+        <p class="text-gray-600 text-[15px] text-justify w-auto h-auto ">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+        <p class="text-gray-600 text-[15px] mt-3 text-justify w-auto h-auto ">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+      </div>
+    </section>
+  </body>
+</html>
